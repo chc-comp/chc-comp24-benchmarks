@@ -1,0 +1,545 @@
+(set-logic HORN)
+
+(declare-datatypes ((node 0)) (((node  (h Int) (n Int)))))
+(declare-datatypes ((HeapObject 0)) (((O_Int  (getInt Int)) (O_UInt  (getUInt Int)) (O_Addr  (getAddr Int)) (O_node  (getnode node)) (defObj ))))
+(declare-datatypes ((Heap 0)) (((HeapCtor  (HeapSize Int) (HeapContents (Array Int HeapObject))))))
+
+(declare-fun |inv_main14| ( Heap Int Int Int Int ) Bool)
+(declare-fun |inv_main20| ( Heap Int Int Int Int ) Bool)
+(declare-fun |inv_main39| ( Heap Int Int Int Int ) Bool)
+(declare-fun |inv_main42| ( Heap Int Int Int Int ) Bool)
+(declare-fun |inv_main23| ( Heap Int Int Int Int ) Bool)
+(declare-fun |inv_main35| ( Heap Int Int Int Int ) Bool)
+(declare-fun |inv_main19| ( Heap Int Int Int Int ) Bool)
+(declare-fun |inv_main34| ( Heap Int Int Int Int ) Bool)
+(declare-fun |CHC_COMP_FALSE| ( ) Bool)
+(declare-fun |inv_main15| ( Heap Int Int Int Int ) Bool)
+(declare-fun |inv_main33| ( Heap Int Int Int Int ) Bool)
+(declare-fun |inv_main2| ( Heap ) Bool)
+(declare-fun |inv_main29| ( Heap Int Int Int Int ) Bool)
+(declare-fun |inv_main36| ( Heap Int Int Int Int ) Bool)
+
+(assert
+  (forall ( (v_0 Heap) ) 
+    (=>
+      (and
+        (and true (= v_0 (HeapCtor 0 ((as const (Array Int HeapObject)) defObj))))
+      )
+      (inv_main2 v_0)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Heap) (F Int) (G Int) (H Int) (I Int) (J Int) (K Heap) ) 
+    (=>
+      (and
+        (inv_main34 K J I H G)
+        (let ((a!1 (ite (and (not (<= I 0)) (>= (HeapSize K) I))
+                (select (HeapContents K) I)
+                defObj)))
+  (and (not (= F 2))
+       (= F (h (getnode a!1)))
+       (= D J)
+       (= C I)
+       (= B H)
+       (= A G)
+       ((_ is O_node) a!1)
+       (= E K)))
+      )
+      (inv_main33 E D C B A)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Heap) (F Int) (G Int) (H Int) (I Int) (J Int) (K Heap) ) 
+    (=>
+      (and
+        (inv_main35 K J I H G)
+        (let ((a!1 (ite (and (not (<= I 0)) (>= (HeapSize K) I))
+                (select (HeapContents K) I)
+                defObj)))
+  (and (not (= F 1))
+       (= F (h (getnode a!1)))
+       (= D J)
+       (= C I)
+       (= B H)
+       (= A G)
+       ((_ is O_node) a!1)
+       (= E K)))
+      )
+      (inv_main33 E D C B A)
+    )
+  )
+)
+(assert
+  (forall ( (A Heap) (B Int) (C Int) (D Int) (E Int) (F Heap) ) 
+    (=>
+      (and
+        (inv_main23 F E D C B)
+        (let ((a!1 (ite (and (not (<= D 0)) (>= (HeapSize F) D))
+                (select (HeapContents F) D)
+                defObj)))
+(let ((a!2 (O_node (node (h (getnode a!1)) B))))
+(let ((a!3 (ite (and (not (<= D 0)) (>= (HeapSize F) D))
+                (HeapCtor (HeapSize F) (store (HeapContents F) D a!2))
+                F)))
+  (and ((_ is O_node) a!1) (= A a!3)))))
+      )
+      (inv_main29 A E D C B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Heap) (F Int) (G Int) (H Int) (I Int) (J Int) (K Heap) ) 
+    (=>
+      (and
+        (inv_main35 K J I H G)
+        (let ((a!1 (ite (and (not (<= I 0)) (>= (HeapSize K) I))
+                (select (HeapContents K) I)
+                defObj)))
+  (and (= F 1)
+       (= F (h (getnode a!1)))
+       (= D J)
+       (= C I)
+       (= B H)
+       (= A G)
+       ((_ is O_node) a!1)
+       (= E K)))
+      )
+      (inv_main39 E D C B A)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F Heap) (G Int) (H Int) (I Int) (J Int) (K Heap) ) 
+    (=>
+      (and
+        (inv_main29 K J I H G)
+        (let ((a!1 (ite (and (not (<= I 0)) (>= (HeapSize K) I))
+                (select (HeapContents K) I)
+                defObj)))
+  (and (= E J)
+       (= D I)
+       (= C H)
+       (= B G)
+       (= A (n (getnode a!1)))
+       ((_ is O_node) a!1)
+       (= F K)))
+      )
+      (inv_main14 F E A C B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F Int) (G Int) (H Int) (I node) (J Heap) (K Int) (L Heap) (v_12 Int) ) 
+    (=>
+      (and
+        (inv_main2 L)
+        (let ((a!1 (HeapCtor (+ 1 (HeapSize L))
+                     (store (HeapContents L) (+ 1 (HeapSize L)) (O_node I)))))
+  (and (= F E)
+       (= H G)
+       (= D C)
+       (= B A)
+       (not (= K 0))
+       (= K (+ 1 (HeapSize L)))
+       (= J a!1)
+       (= v_12 K)))
+      )
+      (inv_main14 J H K v_12 B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F Heap) ) 
+    (=>
+      (and
+        (inv_main14 F E D C B)
+        (and (not (= E 0)) (not (= A 0)))
+      )
+      (inv_main19 F E D C B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F Heap) (G Int) (H Int) (I Int) (J Int) (K Heap) ) 
+    (=>
+      (and
+        (inv_main39 K J I H G)
+        (let ((a!1 (ite (and (not (<= I 0)) (>= (HeapSize K) I))
+                (select (HeapContents K) I)
+                defObj)))
+  (and (= E J)
+       (= D I)
+       (= C H)
+       (= B G)
+       (= A (n (getnode a!1)))
+       ((_ is O_node) a!1)
+       (= F K)))
+      )
+      (inv_main35 F E A C B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Heap) (E Int) (F Int) (G Int) (H Int) (I Int) (J Heap) (v_10 Int) ) 
+    (=>
+      (and
+        (inv_main15 J I H G F)
+        (let ((a!1 (ite (and (not (<= H 0)) (>= (HeapSize J) H))
+                (select (HeapContents J) H)
+                defObj)))
+(let ((a!2 (O_node (node 3 (n (getnode a!1))))))
+(let ((a!3 (ite (and (not (<= H 0)) (>= (HeapSize J) H))
+                (HeapCtor (HeapSize J) (store (HeapContents J) H a!2))
+                J)))
+  (and (= E 0)
+       (= E I)
+       (= C H)
+       (= B G)
+       (= A F)
+       ((_ is O_node) a!1)
+       (= D a!3)
+       (= v_10 B)))))
+      )
+      (inv_main35 D E B v_10 A)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F Heap) (G Int) (H Int) (I Int) (J Int) (K Heap) ) 
+    (=>
+      (and
+        (inv_main36 K J I H G)
+        (let ((a!1 (ite (and (not (<= I 0)) (>= (HeapSize K) I))
+                (select (HeapContents K) I)
+                defObj)))
+  (and (= E J)
+       (= D I)
+       (= C H)
+       (= B G)
+       (= A (n (getnode a!1)))
+       ((_ is O_node) a!1)
+       (= F K)))
+      )
+      (inv_main34 F E A C B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Heap) (E Int) (F Int) (G Int) (H Int) (I Int) (J Heap) (v_10 Int) ) 
+    (=>
+      (and
+        (inv_main15 J I H G F)
+        (let ((a!1 (ite (and (not (<= H 0)) (>= (HeapSize J) H))
+                (select (HeapContents J) H)
+                defObj)))
+(let ((a!2 (O_node (node 3 (n (getnode a!1))))))
+(let ((a!3 (ite (and (not (<= H 0)) (>= (HeapSize J) H))
+                (HeapCtor (HeapSize J) (store (HeapContents J) H a!2))
+                J)))
+  (and (not (= E 0))
+       (= E I)
+       (= C H)
+       (= B G)
+       (= A F)
+       ((_ is O_node) a!1)
+       (= D a!3)
+       (= v_10 B)))))
+      )
+      (inv_main34 D E B v_10 A)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F Heap) ) 
+    (=>
+      (and
+        (inv_main14 F E D C B)
+        (and (= E 0) (not (= A 0)))
+      )
+      (inv_main20 F E D C B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Heap) (F Int) (G Int) (H Int) (I Int) (J Int) (K Heap) ) 
+    (=>
+      (and
+        (inv_main34 K J I H G)
+        (let ((a!1 (ite (and (not (<= I 0)) (>= (HeapSize K) I))
+                (select (HeapContents K) I)
+                defObj)))
+  (and (= F 2)
+       (= F (h (getnode a!1)))
+       (= D J)
+       (= C I)
+       (= B H)
+       (= A G)
+       ((_ is O_node) a!1)
+       (= E K)))
+      )
+      (inv_main36 E D C B A)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F Heap) ) 
+    (=>
+      (and
+        (inv_main14 F E D C B)
+        (= A 0)
+      )
+      (inv_main15 F E D C B)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Heap) (F Int) (G Int) (H Int) (I Int) (J Int) (K Heap) ) 
+    (=>
+      (and
+        (inv_main33 K J I H G)
+        (let ((a!1 (ite (and (not (<= I 0)) (>= (HeapSize K) I))
+                (select (HeapContents K) I)
+                defObj)))
+  (and (not (= F 3))
+       (= F (h (getnode a!1)))
+       (= D J)
+       (= C I)
+       (= B H)
+       (= A G)
+       ((_ is O_node) a!1)
+       (= E K)))
+      )
+      (inv_main42 E D C B A)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F Int) (G Int) (H Int) (I node) (J Heap) (K Heap) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Heap) ) 
+    (=>
+      (and
+        (inv_main19 Q P O N M)
+        (let ((a!1 (HeapCtor (+ 1 (HeapSize J))
+                     (store (HeapContents J) (+ 1 (HeapSize J)) (O_node I))))
+      (a!2 (ite (and (not (<= O 0)) (>= (HeapSize Q) O))
+                (select (HeapContents Q) O)
+                defObj)))
+(let ((a!3 (O_node (node 1 (n (getnode a!2))))))
+(let ((a!4 (ite (and (not (<= O 0)) (>= (HeapSize Q) O))
+                (HeapCtor (HeapSize Q) (store (HeapContents Q) O a!3))
+                Q)))
+  (and (= K a!1)
+       (= E O)
+       (= D C)
+       (= C N)
+       (= B A)
+       (= A M)
+       (= F E)
+       (not (= L 0))
+       (= L (+ 1 (HeapSize J)))
+       (= H G)
+       (= G P)
+       ((_ is O_node) a!2)
+       (= J a!4)))))
+      )
+      (inv_main23 K H F D L)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Int) (F Int) (G Int) (H Int) (I node) (J Heap) (K Heap) (L Int) (M Int) (N Int) (O Int) (P Int) (Q Heap) ) 
+    (=>
+      (and
+        (inv_main20 Q P O N M)
+        (let ((a!1 (HeapCtor (+ 1 (HeapSize J))
+                     (store (HeapContents J) (+ 1 (HeapSize J)) (O_node I))))
+      (a!2 (ite (and (not (<= O 0)) (>= (HeapSize Q) O))
+                (select (HeapContents Q) O)
+                defObj)))
+(let ((a!3 (O_node (node 2 (n (getnode a!2))))))
+(let ((a!4 (ite (and (not (<= O 0)) (>= (HeapSize Q) O))
+                (HeapCtor (HeapSize Q) (store (HeapContents Q) O a!3))
+                Q)))
+  (and (= K a!1)
+       (= E O)
+       (= D C)
+       (= C N)
+       (= B A)
+       (= A M)
+       (= F E)
+       (not (= L 0))
+       (= L (+ 1 (HeapSize J)))
+       (= H G)
+       (= G P)
+       ((_ is O_node) a!2)
+       (= J a!4)))))
+      )
+      (inv_main23 K H F D L)
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Heap) ) 
+    (=>
+      (and
+        (inv_main19 E D C B A)
+        (let ((a!1 (ite (and (not (<= C 0)) (>= (HeapSize E) C))
+                (select (HeapContents E) C)
+                defObj)))
+  (not ((_ is O_node) a!1)))
+      )
+      CHC_COMP_FALSE
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Heap) ) 
+    (=>
+      (and
+        (inv_main20 E D C B A)
+        (let ((a!1 (ite (and (not (<= C 0)) (>= (HeapSize E) C))
+                (select (HeapContents E) C)
+                defObj)))
+  (not ((_ is O_node) a!1)))
+      )
+      CHC_COMP_FALSE
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Heap) ) 
+    (=>
+      (and
+        (inv_main23 E D C B A)
+        (let ((a!1 (ite (and (not (<= C 0)) (>= (HeapSize E) C))
+                (select (HeapContents E) C)
+                defObj)))
+  (not ((_ is O_node) a!1)))
+      )
+      CHC_COMP_FALSE
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Heap) ) 
+    (=>
+      (and
+        (inv_main29 E D C B A)
+        (let ((a!1 (ite (and (not (<= C 0)) (>= (HeapSize E) C))
+                (select (HeapContents E) C)
+                defObj)))
+  (not ((_ is O_node) a!1)))
+      )
+      CHC_COMP_FALSE
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Heap) ) 
+    (=>
+      (and
+        (inv_main15 E D C B A)
+        (let ((a!1 (ite (and (not (<= C 0)) (>= (HeapSize E) C))
+                (select (HeapContents E) C)
+                defObj)))
+  (not ((_ is O_node) a!1)))
+      )
+      CHC_COMP_FALSE
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Heap) ) 
+    (=>
+      (and
+        (inv_main34 E D C B A)
+        (let ((a!1 (ite (and (not (<= C 0)) (>= (HeapSize E) C))
+                (select (HeapContents E) C)
+                defObj)))
+  (not ((_ is O_node) a!1)))
+      )
+      CHC_COMP_FALSE
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Heap) ) 
+    (=>
+      (and
+        (inv_main36 E D C B A)
+        (let ((a!1 (ite (and (not (<= C 0)) (>= (HeapSize E) C))
+                (select (HeapContents E) C)
+                defObj)))
+  (not ((_ is O_node) a!1)))
+      )
+      CHC_COMP_FALSE
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Heap) ) 
+    (=>
+      (and
+        (inv_main35 E D C B A)
+        (let ((a!1 (ite (and (not (<= C 0)) (>= (HeapSize E) C))
+                (select (HeapContents E) C)
+                defObj)))
+  (not ((_ is O_node) a!1)))
+      )
+      CHC_COMP_FALSE
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Heap) ) 
+    (=>
+      (and
+        (inv_main39 E D C B A)
+        (let ((a!1 (ite (and (not (<= C 0)) (>= (HeapSize E) C))
+                (select (HeapContents E) C)
+                defObj)))
+  (not ((_ is O_node) a!1)))
+      )
+      CHC_COMP_FALSE
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Heap) ) 
+    (=>
+      (and
+        (inv_main33 E D C B A)
+        (let ((a!1 (ite (and (not (<= C 0)) (>= (HeapSize E) C))
+                (select (HeapContents E) C)
+                defObj)))
+  (not ((_ is O_node) a!1)))
+      )
+      CHC_COMP_FALSE
+    )
+  )
+)
+(assert
+  (forall ( (A Int) (B Int) (C Int) (D Int) (E Heap) ) 
+    (=>
+      (and
+        (inv_main42 E D C B A)
+        true
+      )
+      CHC_COMP_FALSE
+    )
+  )
+)
+(assert
+  (forall ( (CHC_COMP_UNUSED Bool) ) 
+    (=>
+      (and
+        CHC_COMP_FALSE
+      )
+      false
+    )
+  )
+)
+
+(check-sat)
+(exit)
